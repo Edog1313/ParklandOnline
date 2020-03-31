@@ -41,6 +41,7 @@ checkAccount("none");
 
 <div class="bar"></div></head>
 <h1>I'm glad you could make it.</h1>
+<h3>Follow this link to <a href="./createAccount.php">Create a Account.</a><h3>
 
 </body>
 </html>
