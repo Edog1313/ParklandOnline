@@ -12,34 +12,6 @@ checkAccount("none");
  
 ?>
 </head>
-<body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<html>
-<head>
-<title>Welcome at CSC155 001DR Email Website</title>
-
 <style>
 .center {
   margin: auto;
