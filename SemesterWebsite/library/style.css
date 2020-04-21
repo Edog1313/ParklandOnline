@@ -1,0 +1,41 @@
+#userform  {
+  border: 1px solid black;
+  border-width: 1px;
+  margin-left: auto; 
+  margin-right: auto;
+  border-collapse: collapse;
+}
+
+
+#userform td {
+  border: 0;
+  vertical-align: bottom;
+  text-align: right;
+  background-color: black;
+  padding: 4px;
+}
+
+#usershow {
+  border: 1px solid black;
+  border-width: 1px;
+  margin-left: auto; 
+  margin-right: auto;
+  border-collapse: collapse;
+}
+
+#usershow td, #usershow th {
+  padding: 8px;
+}
+
+#usershow tr:nth-child(even){background-color: #F8A2F6;}
+
+#usershow tr:hover {background-color: #B566F0;}
+
+#usershow th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #C30FC0;
+  color: black;
+}
+

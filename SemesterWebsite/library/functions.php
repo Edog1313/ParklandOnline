@@ -1,5 +1,3 @@
-<title>Library</title>
-<link rel="stylesheet" type="text/css" href="library/style.css">
 <?php
 
 
@@ -36,7 +34,7 @@ function printUserTable($conn)
 	if ($result->num_rows > 0)
 	{   
 		echo "<tr>";
-		echo "<th>ID</th><th>USERNAME</th><th>FIRSTNAME</th><th>LASTNAME</th><th>ENCRYPTED PASSWORD</th><th>USER GROUP</th><th>EMAIL</th>";
+		echo "<th>ID</th><th>USERNAME</th><th>NAME</th><th>ENCRYPTED PASSWORD</th><th>USER GROUP</th><th>EMAIL</th>";
 		echo "</tr>";
 
 		// loop through all the rows
@@ -46,8 +44,7 @@ function printUserTable($conn)
 			echo "<tr>";
 			echo "<td>" . $row["id"] . "</td>";
 			echo "<td>" . $row["username"] . "</td>";
-			echo "<td>" . $row["firstname"] . "</td>";
-			echo "<td>" . $row["lastname"] . "</td>";
+			echo "<td>" . $row["firstname"] . " " . $row["lastname"] . "</td>";
 			echo "<td>" . $row["encrypted_password"] . "</td>";
 			echo "<td>" . $row["usergroup"] . "</td>";
 			echo "<td>" . $row["email"] . "</td>";
@@ -62,6 +59,21 @@ function printUserTable($conn)
 	echo "</table>";
 }
 
+
+function displayError($mesg)
+{
+	echo "<div id='errorMessage'>";
+	echo $mesg;
+	echo "</div>";
+}
+function showPost( $name )
+{
+	if ( isset($_POST[$name]) )
+	{
+		return $_POST[$name];
+	}
+	return "";
+}
 
 
 
