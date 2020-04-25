@@ -1,12 +1,46 @@
 <?php
 
 
+
 function checkAccount($zone)
 {
+    // zone is 'user or admin anything else is none 
 
-//zone is either 'user' or 'admin' everything else is 'none'
-session_start();
+    session_start();
+    if ($zone == 'user')
+    {
+        if (!isset($_SESSION['username']))
+        {
+            header('Location: welcome.php');
+        }
+    }
+
+
+    if ($zone == 'su')
+    {   
+        if (!isset($_SESSION['username']))
+        {   
+            header('Location: welcome.php');
+        }
+        if ($_SESSION['usergroup'] == 'user' )
+        {   
+            header('Location: welcome.php');
+        }
+    }
+    if ($zone == 'admin')
+    {
+        if (!isset($_SESSION['username']))
+        {
+            header('Location: welcome.php');
+        }
+        if ($_SESSION['usergroup'] != 'admin')
+        {
+            header('Location: welcome.php');
+        }
+    }
 }
+
+
 
 
 function getDBConnection()
@@ -73,6 +107,41 @@ function showPost( $name )
 		return $_POST[$name];
 	}
 	return "";
+}
+
+
+function checkAndStoreLogin($conn, $usernameToTest, $passwordToTest)
+{
+    $result=lookupUserName($conn, $usernameToTest);
+    if ($result != FALSE)
+    {
+        $row = $result->fetch_assoc();
+        $encrpytedFromDB = $row['encrypted_password'];
+        if ( password_verify($passwordToTest, $encrpytedFromDB) )
+        {
+            $_SESSION['username'] = $row['username'];
+            $_SESSION['usergroup'] = $row['usergroup'];
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
+
+
+
+function lookUpUserName($conn, $usernameToFind)
+{
+    $sql = "SELECT * FROM users WHERE username=? ;"; // SQL with parameters
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $usernameToFind);
+    $stmt->execute();
+    $result = $stmt->get_result(); // get the mysqli result
+    if ($result->num_rows == 1) {
+        return $result;
+    }
+    else {
+        return FALSE;
+    }
 }
 
 

@@ -7,15 +7,18 @@
 require ('library/functions.php');
 
 // depending on the zone, call one of
-checkAccount("none");
+//checkAccount("none");
 //checkAccount("user");
 //checkAccount("admin");
-//checkAccount("su");
+checkAccount("su");
 // get connection object
 $conn = getDBConnection();
 
 ?>
 </head>
 <body>
-
+<h1>Welcome,<?php echo $_SESSION['usergroup'] ?> <?php echo $_SESSION['username'] ?> to the Super User's home</h1>
+<div><a href="./welcome.php">Welcome Page</a></div>
+<div><a href="./home.php">User's Home</a></div>
+<div><a href="./admin.php">Admin's Home</a></div>
 </body>

@@ -61,7 +61,8 @@ showPost("username")?>'></td></tr>
 <tr><td>Confirm Password: </td><td><input type='text' name='confirmPassword' ></td></tr>
 <tr><td>Email: </td><td><input type='text' name='email' value='<?php echo
 showPost("email")?>'><td></tr>
-<tr><td>User Group: </td><td>User: <input type='radio' name='usergroup' value='user' checked> Admin: <input
+<tr><td>User Group: </td><td>User: <input type='radio' name='usergroup' value='user' checked>Super User: <input
+type='radio' name='usergroup' value='su'> Admin: <input
 type='radio' name='usergroup' value='admin'></td></tr>
 <tr><td><input type='submit' name='selection' value='Create Account'></td>
 <td><input type='submit' name='selection' value='Cancel'></td></tr>
