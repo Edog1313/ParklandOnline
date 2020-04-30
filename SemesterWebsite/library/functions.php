@@ -56,7 +56,15 @@ function getDBConnection()
 }
 
 
-
+function printEditButton($id)
+{
+	echo "<td>";
+	echo "<form action='modifyAccount.php' method='POST'>";
+	echo "<input type='text' name='id' value='$id' >";
+	echo "<input type='submit' name='selection' value='Edit' >";
+	echo "</form>";
+	echo "</td>";
+}
 
 
 function printUserTable($conn)
@@ -68,7 +76,7 @@ function printUserTable($conn)
 	if ($result->num_rows > 0)
 	{   
 		echo "<tr>";
-		echo "<th>ID</th><th>USERNAME</th><th>NAME</th><th>ENCRYPTED PASSWORD</th><th>USER GROUP</th><th>EMAIL</th>";
+		echo "<th>ID</th><th>USERNAME</th><th>NAME</th><th>ENCRYPTED PASSWORD</th><th>USER GROUP</th><th>EMAIL</th><th>ADDRESS</th><th> </th>";
 		echo "</tr>";
 
 		// loop through all the rows
@@ -79,9 +87,16 @@ function printUserTable($conn)
 			echo "<td>" . $row["id"] . "</td>";
 			echo "<td>" . $row["username"] . "</td>";
 			echo "<td>" . $row["firstname"] . " " . $row["lastname"] . "</td>";
-			echo "<td>" . $row["encrypted_password"] . "</td>";
+			echo "<td style='font-size: 10px'>" . $row["encrypted_password"] . "</td>";
 			echo "<td>" . $row["usergroup"] . "</td>";
 			echo "<td>" . $row["email"] . "</td>";
+			echo "<td><div>" . $row["address1"] . "</div><div>" . $row["address2"] . "</div><div>" . $row["city"] . ", " . $row["state"] . " " . $row["zipcode"] . "</div></td>";
+
+
+
+			
+
+			printEditButton($row["id"]);
 			echo "</tr>";
 			}
 		}
@@ -145,7 +160,20 @@ function lookUpUserName($conn, $usernameToFind)
 }
 
 
-
+function lookUpUserNameByID($conn, $idToFind)
+{
+    $sql = "SELECT * FROM users WHERE id=? ;"; // SQL with parameters
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $idToFind);
+    $stmt->execute();
+    $result = $stmt->get_result(); // get the mysqli result
+    if ($result->num_rows == 1) {
+        return $result;
+    }
+    else {
+        return FALSE;
+    }
+}
 
 ?>
 

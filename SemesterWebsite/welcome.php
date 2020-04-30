@@ -96,6 +96,7 @@ name='selection' value='Create Account' ></a></td></tr>
 <div><a href="./home.php">User's Home</a></div>
 <div><a href="./su.php">Super User's Home</a></div>
 <div><a href="./admin.php">Admin's Home</a></div>
+<div><a href="./showAccount.php">Show Accounts</a></div>
 </body>
 </html>
 
