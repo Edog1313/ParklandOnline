@@ -20,30 +20,47 @@ $row = $result->fetch_assoc();
 
 if ($_POST['selection'] == 'Edit')
 {
-    echo ' You are editing';
+    $result = lookupuserNameByID($conn, $_POST['id']);
+    if (!$result)
+    {
+        header('Location: showAccount.php');
+    }
+    $row = $result->fetch_assoc();
+
 }
 else if ($_POST['selection'] == 'Apply Changes')
 {
-    echo 'You are applying changes to';
+    $result = lookupuserNameByID($conn, $_POST['id']);
+    if (!$result)
+    {
+        header('Location: showAccount.php');
+    }
+    updateUserRecord($conn);
+    header('Location: showAccount.php');
+
 }
 else if ($_POST['selection'] == 'Reset Changes')
 {
-    echo ' You are resetting changes made to';
+    $result = lookupuserNameByID($conn, $_POST['id']);
+    if (!$result)
+    {
+        header('Location: showAccount.php');
+    }
+    $row = $result->fetch_assoc();
 }
 else if ($_POST['selection'] == 'Cancel')
 {
-    echo 'You chose to cancel editing';
+    header('Location: showAccount.php');
 }
 else
 {
-   echo 'unknown selection';
+    header('Location: showAccount.php');
 }
 
 ?>
 </head>
 <body>
 
- record <?php echo showPost('id'); ?>
 <br>
 <br>
 <form method='POST'>
@@ -74,27 +91,27 @@ else
 
 <tr>
   <td>Address 1:</td>
-  <td> <input type='text' name='email' value='<?php echo $row["address1"]; ?>'/></td>
+  <td> <input type='text' name='address1' value='<?php echo $row["address1"]; ?>'/></td>
 </tr>
 
 <tr>
   <td>Address 2:</td>
-  <td> <input type='text' name='email' value='<?php echo $row["address2"]; ?>'/></td>
+  <td> <input type='text' name='address2'value='<?php echo $row["address2"]; ?>'/></td>
 </tr>
 
 <tr>
   <td>City:</td>
-  <td> <input type='text' name='email' value='<?php echo $row["city"]; ?>'/></td>
+  <td> <input type='text' name='city' value='<?php echo $row["city"]; ?>'/></td>
 </tr>
 
 <tr>
   <td>State:</td>
-  <td> <input type='text' name='email' value='<?php echo $row["state"]; ?>'/></td>
+  <td> <input type='text' name='state' value='<?php echo $row["state"]; ?>'/></td>
 </tr>
 
 <tr>
   <td>Zipcode:</td>
-  <td> <input type='text' name='email' value='<?php echo $row["zipcode"]; ?>'/></td>
+  <td> <input type='text' name='zipcode' value='<?php echo $row["zipcode"]; ?>'/></td>
 </tr>
 
 

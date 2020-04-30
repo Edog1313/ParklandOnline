@@ -60,7 +60,7 @@ function printEditButton($id)
 {
 	echo "<td>";
 	echo "<form action='modifyAccount.php' method='POST'>";
-	echo "<input type='text' name='id' value='$id' >";
+        echo "<input type='text' name='id' value='$id' />";
 	echo "<input type='submit' name='selection' value='Edit' >";
 	echo "</form>";
 	echo "</td>";
@@ -91,11 +91,6 @@ function printUserTable($conn)
 			echo "<td>" . $row["usergroup"] . "</td>";
 			echo "<td>" . $row["email"] . "</td>";
 			echo "<td><div>" . $row["address1"] . "</div><div>" . $row["address2"] . "</div><div>" . $row["city"] . ", " . $row["state"] . " " . $row["zipcode"] . "</div></td>";
-
-
-
-			
-
 			printEditButton($row["id"]);
 			echo "</tr>";
 			}
@@ -174,6 +169,28 @@ function lookUpUserNameByID($conn, $idToFind)
         return FALSE;
     }
 }
+
+
+
+function updateUserRecord($conn)
+{
+    $stmt = $conn->prepare("UPDATE users SET firstname=?, lastname=?, email=?, address1=?, address2=?, city=?, state=?, zipcode=? WHERE id=? ");
+    $stmt->bind_param("ssssssssi", $firstname, $lastname, $email, $address1, $address2, $city, $state, $zipcode, $id);
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
+    $email = $_POST['email'];
+    $address1 = $_POST['address1'];
+    $address2 = $_POST['address2'];
+    $city = $_POST['city'];
+    $state = $_POST['state'];
+    $zipcode = $_POST['zipcode'];
+    $id = $_POST['id'];
+    $stmt->execute();
+}
+
+
+
+
 
 ?>
 

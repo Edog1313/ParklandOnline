@@ -20,7 +20,7 @@ if (isset($_POST['selection']))//form loads itself
 			//build SQL Command
 			$stmt = $conn->prepare ("INSERT INTO users (firstname, lastname, username, encrypted_password, usergroup, email, address1, address2, city, state, zipcode) 
 					VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-			$stmt->bind_param("ssssssssssi", $firstname, $lastname, $username, $encrypted_password, $usergroup, $email, $address1, $address2, $city, $state, $zipcode);
+			$stmt->bind_param("sssssssssss", $firstname, $lastname, $username, $encrypted_password, $usergroup, $email, $address1, $address2, $city, $state, $zipcode);
 		
 			//define variables
 			$firstname=$_POST['firstname'];
@@ -34,7 +34,7 @@ if (isset($_POST['selection']))//form loads itself
 			$city=$_POST['city'];
 			$state=$_POST['state'];
 			$zipcode=$_POST['zipcode'];
-			//ececutes code
+			//executes code
 			$stmt->execute();
 			header( 'Location: welcome.php' );
 		}
